@@ -13,6 +13,11 @@ app.get('/app', (req, res) => {
     appsData = appsData.filter((obj) =>
       obj.Genres.toLowerCase().includes(genre.toLowerCase())
     );
+    if (appsData.length === 0) {
+      return res
+        .status(200)
+        .json({ messasge: 'No results found!' });
+    }
   }
 
   if (sort && sort !== 'Rating' && sort !== 'App') {
